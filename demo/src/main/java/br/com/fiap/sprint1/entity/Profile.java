@@ -38,7 +38,14 @@ public class Profile {
     @Column(name = "DT_REGISTER_USER")
     private LocalDate dt_register;
 
-    @Column(name = "ID_COMPANY")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(
+            name = "COMPANY",
+            referencedColumnName = "ID_COMPANY",
+            foreignKey = @ForeignKey(
+                    name = "FK_COMPANY_PROFILE"
+            )
+    )
     private Company id_company;
 
 }

@@ -38,7 +38,14 @@ public class Campaign {
     @Column(name = "DT_REGISTER_CAMPAIGN")
     private LocalDate dt_register;
 
-    //Provavel relacionamento
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(
+            name = "PRODUCT",
+            referencedColumnName = "ID_PRODUCT",
+            foreignKey = @ForeignKey(
+                    name = "FK_CAMPAIGN_PRODUCT"
+            )
+    )
     private Product id_product;
 
 }
